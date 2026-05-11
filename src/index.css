@@ -1,7 +1,15 @@
 :root {
   --green: rgb(39, 189, 39);
+  --light-green: rgba(39, 189, 39, 0.1);
+  --dark-green: rgb(25, 125, 25);
+  --light-gray: #f9f9f9;
+  --gray: #333;
+  --white: #ffffff;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --blue: rgb(70, 130, 180); /* New blue color */
 }
 
+/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -10,128 +18,185 @@
 
 body {
   font-family: "Playfair Display", serif;
+  background: #f6fff6;
 }
 
-h2 {
-  margin-bottom: 1rem;
-}
-
-button {
-  padding: 0.25rem 1rem;
-  font-family: inherit;
-  border: none;
-  cursor: pointer;
-}
-
-button.primary {
-  background-color: var(--green);
-  color: white;
-}
-
+/* APP CONTAINER */
 .app {
   margin: 0 auto;
   max-width: 1200px;
+  padding: 1rem;
+}
+
+/* HEADER */
+header {
+  background-color: var(--blue);
+  padding: 1rem 0;
+  box-shadow: 0 2px 10px var(--shadow-color);
 }
 
 header h1 {
   font-size: 2.5em;
   font-weight: 900;
   text-align: center;
-  padding: 0.5rem 0;
+  color: var(--white);
 }
 
-.logo {
-  font-size: 1.25em;
-  padding-left: 0.5rem;
-  color: transparent;
-  text-shadow: 0 0 0 var(--green);
-}
-
-main {
-  padding: 0 1rem;
-}
-
-.new-plant-form {
-  padding: 2rem 1rem;
-  margin: 2rem 0;
-  background-color: rgba(181, 250, 181, 0.5);
-}
-
-.new-plant-form form {
+/* MAIN LAYOUT (PlantPage FIXED ALIGNMENT) */
+.plant-page {
   display: flex;
-  justify-content: center;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+/* SIDEBAR */
+.plant-page-sidebar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* MAIN AREA */
+.plant-page-main {
+  flex: 2;
+}
+
+/* SEARCH */
+.search {
+  padding: 1.5rem;
+  background: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 2px 10px var(--shadow-color);
+  transition: transform 0.2s ease;
+}
+
+.search:hover {
+  transform: translateY(-2px);
+}
+
+.search input {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  border: 2px solid var(--light-gray);
+  border-radius: 5px;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+.search input:focus {
+  outline: none;
+  border-color: var(--green);
+}
+
+/* NEW PLANT FORM */
+.new-plant-form {
+  padding: 1.5rem;
+  background-color: rgba(181, 250, 181, 0.7);
+  border-radius: 10px;
+  box-shadow: 0 2px 10px var(--shadow-color);
+}
+
+.new-plant-form h2 {
+  margin-bottom: 1rem;
+  color: var(--green);
 }
 
 .new-plant-form input {
-  margin-right: 2rem;
-  flex: 1;
+  padding: 0.75rem;
+  border: 2px solid var(--light-gray);
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.new-plant-form input:focus {
+  outline: none;
+  border-color: var(--green);
 }
 
 .new-plant-form button {
-  width: 150px;
-}
-
-.searchbar {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-}
-
-label {
-  font-weight: bold;
-  display: block;
-}
-
-input {
-  padding: 0.25rem;
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--green);
+  color: var(--white);
   border: none;
-  font-family: inherit;
-  font-size: 1.2em;
-  border-bottom: 2px solid gray;
-  transition: all 0.2s;
-  width: 100%;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-input:focus {
-  outline: none;
-  border-bottom: 2px solid var(--green);
+.new-plant-form button:hover {
+  background: var(--dark-green);
+  transform: translateY(-2px);
 }
 
-.cards {
+/* PLANT LIST */
+.plant-list {
   list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
 }
 
-.card {
-  margin: 1rem;
+.plant-card {
+  background: var(--blue); /* Changed background color to blue */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px var(--shadow-color);
+  transition: transform 0.2s ease;
 }
 
-.card img {
+.plant-card:hover {
+  transform: translateY(-4px);
+}
+
+.plant-card img {
   width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
-.card button {
-  margin-top: 0.5rem;
+.plant-card h4 {
+  margin: 0.5rem 0;
+  font-weight: bold;
+  color: var(--white); /* Change text color to white for contrast */
 }
 
-@media (min-width: 768px) {
-  .cards {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .card {
-    width: calc(33% - 2rem);
-  }
+.plant-card-price {
+  color: var(--white); /* Change price color to white for contrast */
+  font-weight: bold;
 }
 
-@media (min-width: 1024px) {
-  .card {
-    width: calc(25% - 2rem);
-  }
+.plant-card button {
+  margin: 0.5rem 0 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  color: var(--white);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-@media (min-width: 1200px) {
-  .card {
-    width: calc(20% - 2rem);
+.plant-card button.bg-green {
+  background-color: var(--green);
+}
+
+.plant-card button.bg-gray {
+  background-color: gray;
+}
+
+/* EMPTY STATE */
+.plant-list-empty {
+  text-align: center;
+  padding: 2rem;
+  color: gray;
+}
+
+/* RESPONSIVE FIX */
+@media (max-width: 768px) {
+  .plant-page {
+    flex-direction: column;
   }
 }
